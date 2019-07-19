@@ -3,12 +3,17 @@ import { Rule } from './index'
 
 export class SameNumbersRule extends Rule {
   // https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
-  findDuplicates(occurrence = 2) {
-    const uniq = this._findOccurrenceCounts()
-    return Object.keys(uniq).filter((a) => uniq[a] >= occurrence)
+  constructor(numbers, occurrence = 2) {
+    super(numbers)
+    this.occurrence = occurrence
   }
 
-  findExactDuplicates(occurrence = 2) {
+  findDuplicates() {
+    const uniq = this._findOccurrenceCounts()
+    return Object.keys(uniq).filter((a) => uniq[a] >= this.occurrence)
+  }
+
+  findExactDuplicates(occurrence) {
     const uniq = this._findOccurrenceCounts()
     return Object.keys(uniq).filter((a) => uniq[a] === occurrence)
   }

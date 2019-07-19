@@ -1,12 +1,15 @@
 import { SameNumbersRule } from './internal_same-numbers-rule'
 
 export class ThreeEqualsRule extends SameNumbersRule {
+  constructor(numbers) {
+    super(numbers, 3)
+  }
+
   calculate() {
-    const occurrence = 3
-    const duplicates = this.findDuplicates(occurrence)
+    const duplicates = this.findDuplicates()
 
     if (duplicates.length > 0) {
-      return Number(Math.max(...duplicates)) * occurrence
+      return Number(Math.max(...duplicates)) * 3
     }
 
     return 0
