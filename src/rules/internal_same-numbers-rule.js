@@ -30,10 +30,13 @@ export class SameNumbersRule extends Rule {
       }, {})
   }
 
-  // eslint-disable-next-line class-methods-use-this
   calculate() {
-    throw new Error(
-      'sub class responsibility, making this class only to reuse the findDuplicates()'
-    )
+    const duplicates = this.findDuplicates(this.occurrence)
+
+    if (duplicates.length > 0) {
+      return Number(Math.max(...duplicates)) * this.occurrence
+    }
+
+    return 0
   }
 }

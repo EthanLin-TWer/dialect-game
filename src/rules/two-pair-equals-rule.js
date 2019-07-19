@@ -1,6 +1,10 @@
 import { SameNumbersRule } from './internal_same-numbers-rule'
 
 export class TwoPairEqualsRule extends SameNumbersRule {
+  constructor(numbers) {
+    super(numbers, 2)
+  }
+
   calculate() {
     const duplicates = this.findDuplicates()
 
