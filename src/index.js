@@ -1,1 +1,1 @@
-export const babelWorksWithExports = () => true
+export function calculateScores() {}
