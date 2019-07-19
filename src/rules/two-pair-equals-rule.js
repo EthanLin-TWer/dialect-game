@@ -1,6 +1,6 @@
-import { TwoEqualsRule } from './two-equals-rule'
+import { SameNumbersRule } from './internal_same-numbers-rule'
 
-export class TwoPairEqualsRule extends TwoEqualsRule {
+export class TwoPairEqualsRule extends SameNumbersRule {
   calculate() {
     const duplicates = this.findDuplicates()
 

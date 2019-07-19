@@ -1,21 +1,6 @@
-import { Rule } from './index'
+import { SameNumbersRule } from './internal_same-numbers-rule'
 
-export class TwoEqualsRule extends Rule {
-  // https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
-  findDuplicates() {
-    const uniq = this.numbers
-      .map((number) => ({
-        count: 1,
-        name: number,
-      }))
-      .reduce((result, b) => {
-        result[b.name] = (result[b.name] || 0) + b.count
-        return result
-      }, {})
-
-    return Object.keys(uniq).filter((a) => uniq[a] > 1)
-  }
-
+export class TwoEqualsRule extends SameNumbersRule {
   calculate() {
     const duplicates = this.findDuplicates()
 
