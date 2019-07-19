@@ -8,6 +8,11 @@ import { ThreeEqualsRule } from './rules/three-equals-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
 import { TwoPairEqualsRule } from './rules/two-pair-equals-rule'
 
+// eslint-disable-next-line no-unused-vars
+function validate(numbers) {
+  // throw new LackOfImplementationTimeException()
+}
+
 function getAllRulesFactory(number) {
   return [
     new AllEqualsRule(number),
@@ -22,6 +27,8 @@ function getAllRulesFactory(number) {
 }
 
 export function calculateScores(numbers) {
+  validate(numbers)
+
   const basicScores = new BasicRule(numbers).calculate()
   const extraScores = getAllRulesFactory(numbers).map((rule) =>
     rule.calculate()
