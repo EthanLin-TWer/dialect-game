@@ -4,7 +4,17 @@ import { Rule } from './index'
 export class SameNumbersRule extends Rule {
   // https://stackoverflow.com/questions/840781/get-all-non-unique-values-i-e-duplicate-more-than-one-occurrence-in-an-array
   findDuplicates(occurrence = 2) {
-    const uniq = this.numbers
+    const uniq = this._findOccurrenceCounts()
+    return Object.keys(uniq).filter((a) => uniq[a] >= occurrence)
+  }
+
+  findExactDuplicates(occurrence = 2) {
+    const uniq = this._findOccurrenceCounts()
+    return Object.keys(uniq).filter((a) => uniq[a] === occurrence)
+  }
+
+  _findOccurrenceCounts() {
+    return this.numbers
       .map((number) => ({
         count: 1,
         name: number,
@@ -13,8 +23,6 @@ export class SameNumbersRule extends Rule {
         result[b.name] = (result[b.name] || 0) + b.count
         return result
       }, {})
-
-    return Object.keys(uniq).filter((a) => uniq[a] >= occurrence)
   }
 
   // eslint-disable-next-line class-methods-use-this

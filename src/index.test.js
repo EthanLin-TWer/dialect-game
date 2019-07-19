@@ -2,6 +2,7 @@ import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
 import { BigStraight } from './rules/big-straight-rule'
 import { FourEqualsRule } from './rules/four-equals-rule'
+import { FullHouseRule } from './rules/full-house-rule'
 import { SmallStraight } from './rules/small-straight-rule'
 import { ThreeEqualsRule } from './rules/three-equals-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
@@ -166,6 +167,30 @@ describe('奖励规则', () => {
     const numbers = [1, 2, 3, 4, 5]
 
     const result = new BigStraight(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则八：三同点加一对：若存在三个相同的点数加不相同的一对，奖励其五个数字的总和', () => {
+    const numbers = [3, 3, 3, 4, 4]
+
+    const result = new FullHouseRule(numbers).calculate()
+
+    expect(result).toEqual(17)
+  })
+
+  it('规则八：三同点加一对：若存在三个相同的点数加相同的一对（即五个点数完全相同），则不奖励', () => {
+    const numbers = [3, 3, 3, 3, 3]
+
+    const result = new FullHouseRule(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则八：三同点加一对：若不存在三个相同的点数加不相同的一对，则不奖励', () => {
+    const numbers = [3, 3, 3, 3, 4]
+
+    const result = new FullHouseRule(numbers).calculate()
 
     expect(result).toEqual(0)
   })
