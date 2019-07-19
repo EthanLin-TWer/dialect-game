@@ -2,6 +2,7 @@ import { Rule } from './index'
 
 export class AllEqualsRule extends Rule {
   calculate() {
-    return this.numbers
+    const uniqNumbers = [...new Set(this.numbers)]
+    return uniqNumbers.length === 1 ? 50 : 0
   }
 }
