@@ -1,5 +1,6 @@
 import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
+import { ThreeEqualsRule } from './rules/three-equals-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
 import { TwoPairEqualsRule } from './rules/two-pair-equals-rule'
 
@@ -82,6 +83,22 @@ describe('奖励规则', () => {
     const numbers = [1, 1, 2, 3, 4]
 
     const result = new TwoPairEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则四：三个相同：若存在三个相同的数字，则奖励该三个数字的总和', () => {
+    const numbers = [1, 3, 3, 3, 5]
+
+    const result = new ThreeEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(9)
+  })
+
+  it('规则四：三个相同：若不存在三个相同的数字，则不奖励', () => {
+    const numbers = [1, 1, 2, 3, 4]
+
+    const result = new ThreeEqualsRule(numbers).calculate()
 
     expect(result).toEqual(0)
   })
