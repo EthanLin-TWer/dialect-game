@@ -1,5 +1,6 @@
 import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
+import { FourEqualsRule } from './rules/four-equals-rule'
 import { ThreeEqualsRule } from './rules/three-equals-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
 import { TwoPairEqualsRule } from './rules/two-pair-equals-rule'
@@ -71,7 +72,7 @@ describe('奖励规则', () => {
     expect(result).toEqual(6)
   })
 
-  it('规则三：两个两个相同：如果有两对相同的值，其中一对有三个值相等，也仅奖励两对相同数字的总和', () => {
+  it('规则三：两个两个相同：如果有两对相同的值，其中一对有三个值相等，也仅奖励其中两对相同数字的总和', () => {
     const numbers = [1, 1, 2, 2, 2]
 
     const result = new TwoPairEqualsRule(numbers).calculate()
@@ -88,6 +89,14 @@ describe('奖励规则', () => {
   })
 
   it('规则四：三个相同：若存在三个相同的数字，则奖励该三个数字的总和', () => {
+    const numbers = [1, 3, 3, 3, 3]
+
+    const result = new ThreeEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(9)
+  })
+
+  it('规则四：三个相同：若存在三个以上相同的数字，也仅奖励其中三个数字的总和', () => {
     const numbers = [1, 3, 3, 3, 5]
 
     const result = new ThreeEqualsRule(numbers).calculate()
@@ -99,6 +108,30 @@ describe('奖励规则', () => {
     const numbers = [1, 1, 2, 3, 4]
 
     const result = new ThreeEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则五：四个相同：若存在四个相同的数字，则奖励这四个数字的总和', () => {
+    const numbers = [3, 3, 3, 3, 5]
+
+    const result = new FourEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(12)
+  })
+
+  it('规则五：四个相同：若存在四个以上相同的数字，也仅奖励其中四个数字的总和', () => {
+    const numbers = [3, 3, 3, 3, 3]
+
+    const result = new FourEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(12)
+  })
+
+  it('规则五：四个相同：若不存在四个以上相同的数字，则不奖励', () => {
+    const numbers = [3, 3, 3, 4, 4]
+
+    const result = new FourEqualsRule(numbers).calculate()
 
     expect(result).toEqual(0)
   })
