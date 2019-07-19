@@ -1,0 +1,62 @@
+{
+  "name": "dialect-game",
+  "version": "1.0.0",
+  "description": "A game sponsored by 张烤鸭.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint src",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --verbose"
+  },
+  "keywords": [
+    "gambling"
+  ],
+  "author": "Congyu Lin",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-javascript-the-good-parts": "^1.7.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.2.0",
+    "prettier": "^1.18.2"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/*.test.js"
+    ],
+    "verbose": false,
+    "collectCoverage": false
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "arrowParens": "always"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "npm run lint -- --fix",
+      "git add"
+    ]
+  }
+}
