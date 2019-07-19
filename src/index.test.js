@@ -1,3 +1,4 @@
+import { calculateScores } from './index'
 import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
 import { BigStraight } from './rules/big-straight-rule'
@@ -8,7 +9,7 @@ import { ThreeEqualsRule } from './rules/three-equals-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
 import { TwoPairEqualsRule } from './rules/two-pair-equals-rule'
 
-describe('基础分计算 calculateBasicScores', () => {
+describe('基础分计算', () => {
   it('所有骰子分的总和', () => {
     const numbers = [1, 2, 3, 4, 5]
 
@@ -196,4 +197,36 @@ describe('奖励规则', () => {
   })
 })
 
-describe('完整计算 最终得分', () => {})
+describe('完整计算 最终得分', () => {
+  it('只有基本分数', () => {
+    const numbers = [1, 2, 3, 4, 6]
+
+    const result = calculateScores(numbers)
+
+    expect(result).toEqual(16)
+  })
+
+  it('基本分数 + 两对奖励', () => {
+    const numbers = [1, 2, 2, 4, 4]
+
+    const result = calculateScores(numbers)
+
+    expect(result).toEqual(25)
+  })
+
+  it('基本分数 + max(两对奖励，三个相同奖励)', () => {
+    const numbers = [3, 3, 5, 3, 5]
+
+    const result = calculateScores(numbers)
+
+    expect(result).toEqual(38)
+  })
+
+  it('基本分数 + 五个相同奖励', () => {
+    const numbers = [6, 6, 6, 6, 6]
+
+    const result = calculateScores(numbers)
+
+    expect(result).toEqual(80)
+  })
+})
