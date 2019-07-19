@@ -1,5 +1,6 @@
 import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
+import { BigStraight } from './rules/big-straight-rule'
 import { FourEqualsRule } from './rules/four-equals-rule'
 import { SmallStraight } from './rules/small-straight-rule'
 import { ThreeEqualsRule } from './rules/three-equals-rule'
@@ -149,6 +150,22 @@ describe('奖励规则', () => {
     const numbers = [2, 3, 4, 5, 6]
 
     const result = new SmallStraight(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则七：大顺子：2, 3, 4, 5, 6 奖励20分', () => {
+    const numbers = [2, 3, 4, 5, 6]
+
+    const result = new BigStraight(numbers).calculate()
+
+    expect(result).toEqual(20)
+  })
+
+  it('规则七：大顺子：不是大顺子，则不奖励', () => {
+    const numbers = [1, 2, 3, 4, 5]
+
+    const result = new BigStraight(numbers).calculate()
 
     expect(result).toEqual(0)
   })
