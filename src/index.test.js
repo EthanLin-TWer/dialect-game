@@ -1,6 +1,7 @@
 import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
 import { FourEqualsRule } from './rules/four-equals-rule'
+import { SmallStraight } from './rules/small-straight-rule'
 import { ThreeEqualsRule } from './rules/three-equals-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
 import { TwoPairEqualsRule } from './rules/two-pair-equals-rule'
@@ -132,6 +133,22 @@ describe('奖励规则', () => {
     const numbers = [3, 3, 3, 4, 4]
 
     const result = new FourEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则六：小顺子：1, 2, 3, 4, 5 奖励15分', () => {
+    const numbers = [1, 2, 3, 4, 5]
+
+    const result = new SmallStraight(numbers).calculate()
+
+    expect(result).toEqual(15)
+  })
+
+  it('规则六：小顺子：不是小顺子，则不奖励', () => {
+    const numbers = [2, 3, 4, 5, 6]
+
+    const result = new SmallStraight(numbers).calculate()
 
     expect(result).toEqual(0)
   })
