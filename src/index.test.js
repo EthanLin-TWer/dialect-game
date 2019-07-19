@@ -29,7 +29,7 @@ describe('奖励规则', () => {
     expect(result).toEqual(0)
   })
 
-  it.skip('规则二：两个相同：如果有两个值相同，奖励这两个数的总和', () => {
+  it('规则二：两个相同：如果有两个值相同，奖励这两个数的总和', () => {
     const numbers = [1, 2, 2, 3, 4]
 
     const result = new TwoEqualsRule(numbers).calculate()
@@ -37,7 +37,7 @@ describe('奖励规则', () => {
     expect(result).toEqual(4)
   })
 
-  it.skip('规则二：两个相同：如果有多于两个值相同，仅奖励其中两个数的总和', () => {
+  it('规则二：两个相同：如果有多于两个值相同，仅奖励其中两个数的总和', () => {
     const numbers = [1, 2, 2, 2, 3]
 
     const result = new TwoEqualsRule(numbers).calculate()
@@ -45,12 +45,20 @@ describe('奖励规则', () => {
     expect(result).toEqual(4)
   })
 
-  it.skip('规则二：两个相同：如果有多于两组值相同，奖励最大一组两个数的总和', () => {
+  it('规则二：两个相同：如果有多于两组值相同，奖励最大一组两个数的总和', () => {
     const numbers = [1, 2, 2, 4, 4]
 
     const result = new TwoEqualsRule(numbers).calculate()
 
     expect(result).toEqual(8)
+  })
+
+  it('规则二：两个相同：如果没有两个以上相同的值，则不奖励', () => {
+    const numbers = [1, 2, 3, 4, 5]
+
+    const result = new TwoEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(0)
   })
 })
 
