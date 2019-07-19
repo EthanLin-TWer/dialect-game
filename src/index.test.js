@@ -1,6 +1,7 @@
 import { AllEqualsRule } from './rules/all-equals-rule'
 import { BasicRule } from './rules/basic-rule'
 import { TwoEqualsRule } from './rules/two-equals-rule'
+import { TwoPairEqualsRule } from './rules/two-pair-equals-rule'
 
 describe('基础分计算 calculateBasicScores', () => {
   it('所有骰子分的总和', () => {
@@ -57,6 +58,30 @@ describe('奖励规则', () => {
     const numbers = [1, 2, 3, 4, 5]
 
     const result = new TwoEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(0)
+  })
+
+  it('规则三：两个两个相同：如果有两对相同的值，奖励两对相同数字的总和', () => {
+    const numbers = [1, 1, 2, 2, 3]
+
+    const result = new TwoPairEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(6)
+  })
+
+  it('规则三：两个两个相同：如果有两对相同的值，其中一对有三个值相等，也仅奖励两对相同数字的总和', () => {
+    const numbers = [1, 1, 2, 2, 2]
+
+    const result = new TwoPairEqualsRule(numbers).calculate()
+
+    expect(result).toEqual(6)
+  })
+
+  it('规则三：两个两个相同：若不存在两对相同的值，则不奖励', () => {
+    const numbers = [1, 1, 2, 3, 4]
+
+    const result = new TwoPairEqualsRule(numbers).calculate()
 
     expect(result).toEqual(0)
   })
