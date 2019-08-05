@@ -172,6 +172,14 @@ describe('奖励规则', () => {
     expect(result).toEqual(20)
   })
 
+  it('规则七：大顺子：2, 3, 5, 4, 6 奖励20分', () => {
+    const numbers = [2, 3, 5, 4, 6]
+
+    const result = new BigStraightRule(numbers).calculate()
+
+    expect(result).toEqual(20)
+  })
+
   it('规则七：大顺子：不是大顺子，则不奖励', () => {
     const numbers = [1, 2, 3, 4, 5]
 

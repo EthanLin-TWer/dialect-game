@@ -4,7 +4,7 @@ import { Rule } from './index'
 
 export class BigStraightRule extends Rule {
   calculate() {
-    const isBigStraight = isEqual(this.numbers, [2, 3, 4, 5, 6])
-    return isBigStraight ? 20 : 0
+    const inOrder = [...this.numbers].sort()
+    return isEqual(inOrder, [2, 3, 4, 5, 6]) ? 20 : 0
   }
 }
