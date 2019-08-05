@@ -148,6 +148,14 @@ describe('奖励规则', () => {
     expect(result).toEqual(15)
   })
 
+  it('规则六：小顺子：1, 2, 4, 3, 5 奖励15分', () => {
+    const numbers = [1, 2, 4, 3, 5]
+
+    const result = new SmallStraightRule(numbers).calculate()
+
+    expect(result).toEqual(15)
+  })
+
   it('规则六：小顺子：不是小顺子，则不奖励', () => {
     const numbers = [2, 3, 4, 5, 6]
 

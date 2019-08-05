@@ -4,7 +4,7 @@ import { Rule } from './index'
 
 export class SmallStraightRule extends Rule {
   calculate() {
-    const isSmallStraight = isEqual(this.numbers, [1, 2, 3, 4, 5])
-    return isSmallStraight ? 15 : 0
+    const inOrder = [...this.numbers].sort()
+    return isEqual(inOrder, [1, 2, 3, 4, 5]) ? 15 : 0
   }
 }
