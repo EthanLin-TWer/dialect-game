@@ -9,9 +9,7 @@ export class TwoPairEqualsRule extends SameNumbersRule {
     const duplicates = this.findDuplicates()
 
     if (duplicates.length === 2) {
-      return duplicates
-        .map((duplicated) => Number(duplicated) * 2)
-        .reduce((total, next) => total + next, 0)
+      return duplicates.reduce((total, next) => total + next * 2, 0)
     }
 
     return 0
