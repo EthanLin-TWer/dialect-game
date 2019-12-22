@@ -9,10 +9,6 @@ export class FullHouseRule extends SameNumbersRule {
       return 0
     }
 
-    if (threeOfAKind === aPair) {
-      return 0
-    }
-
     return Number(threeOfAKind) * 3 + Number(aPair) * 2
   }
 }
